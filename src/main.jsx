@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { BrowserRouter } from 'react-router-dom';
+
 import { ReduxCrudApp } from './ReduxCrudApp';
+
+import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ReduxCrudApp />
+    <BrowserRouter>
+      <ReduxCrudApp />
+    </BrowserRouter>
   </React.StrictMode>
 )
