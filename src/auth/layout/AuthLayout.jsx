@@ -19,7 +19,7 @@ export const AuthLayout = ({ children, title }) => {
             item
             xs={ 3 }
             sx={{
-              width: { sm: 500 },
+              width: { sm: 450 },
               backgroundColor: 'white',
               padding: 3,
               borderRadius: 2,
