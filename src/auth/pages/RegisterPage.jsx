@@ -45,7 +45,7 @@ export const RegisterPage = () => {
           </Grid>
 
           <Grid container direction='row' justifyContent='end' sx={{ mt: 1 }}>
-            <Link component={ RouterLink } to='/login' underline='none'>
+            <Link component={ RouterLink } to='/auth/login' underline='none'>
               ¿Ya tienes cuenta?  
             </Link>
           </Grid>
