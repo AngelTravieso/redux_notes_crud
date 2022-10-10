@@ -1,7 +1,10 @@
 import { Google } from '@mui/icons-material';
-import { Button, Grid, Link, TextField, Typography } from '@mui/material';
+import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material';
+import { useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 import { useForm } from '../../hooks';
+import { startLoginWithEmailAndPassword } from '../../store/auth';
 import { AuthLayout } from '../layout/AuthLayout';
 
 const formData = {
@@ -16,6 +19,12 @@ const formValidation = {
 
 export const LoginPage = () => {
 
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const { state, errorMessage } = useSelector( state => state.auth );
+  const dispatch = useDispatch();
+
+  const isAuthenticating = useMemo(() => state === 'checking', [ state ]);
+
   const { 
     formState, email, password,
     isFormValid, emailValid, passwordValid,
@@ -25,12 +34,11 @@ export const LoginPage = () => {
   const onSubmit = (evt) => {
     evt.preventDefault();
 
-    console.log({
-      formState,
-      isFormValid,
-    })
+    setFormSubmitted(true);
 
-    console.log('submit');
+    if(!isFormValid) return;
+
+    dispatch( startLoginWithEmailAndPassword( formState ) );
 
   }
 
@@ -48,8 +56,9 @@ export const LoginPage = () => {
               fullWidth
               value={ email }
               onChange={ onInputChange }
-              // helperText='asds'
-              // error
+              error={ !!emailValid && formSubmitted }
+              helperText={ emailValid }
+              disabled={ isAuthenticating }
             />
           </Grid>
 
@@ -64,7 +73,17 @@ export const LoginPage = () => {
               fullWidth
               value={ password }
               onChange={ onInputChange }
+              error={ !!passwordValid && formSubmitted }
+              helperText={ passwordValid }
+              disabled={ isAuthenticating }
             />
+          </Grid>
+
+          <Grid item xs={12} display={ !!errorMessage ? '' : 'none' } sx={{ 
+            mt: 2
+          }}
+          >
+            <Alert severity="error">{ errorMessage }</Alert>
           </Grid>
 
           <Grid container sx={{ mt: 2 }}>

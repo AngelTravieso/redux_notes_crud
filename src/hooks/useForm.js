@@ -15,6 +15,7 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
         for(const formValue of Object.keys( formValidation )) {
             if(formValidation[formValue] !== null) return false;   
         }
+        return true;
     }, [ formValidation ]);
 
     const onInputChange = ({ target }) => {
@@ -34,8 +35,8 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
         for(const formField of Object.keys(formValidations)) {
             const [ fn, errorMessage ] = formValidations[formField];
             obj[`${formField}Valid`] = fn( formState[formField] ) ? null : errorMessage;
-            setFormValidation(obj);
         }
+        setFormValidation(obj);
     }
 
     const onResetForm = () => {
@@ -48,9 +49,9 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
         formState,
         onInputChange,
         onResetForm,
-        isFormValid,
-
+        
         ...formValidation,
+        isFormValid,
     }
 
 }

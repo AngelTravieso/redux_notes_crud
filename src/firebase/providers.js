@@ -11,11 +11,11 @@ import { FirebaseAuth } from './config';
 
 const googleProvider = new GoogleAuthProvider();
 
-const signInWithGoogle = async () => {
 
+export const signInWithGoogle = async () => {
     try {
 
-        const res = signInWithPopup( FirebaseAuth, googleProvider );
+        const res = await signInWithPopup( FirebaseAuth, googleProvider );
         
         console.log(res)
 
@@ -30,5 +30,30 @@ const signInWithGoogle = async () => {
             errorMessage,
         }
     }
+}
 
+
+export const loginWithEmailAndPassword = async ({ email, password }) => {
+    try {
+        const resp = await signInWithEmailAndPassword(FirebaseAuth, email, password);
+
+        console.log(resp.user);
+
+        const { uid, displayName, photoURL } = resp.user;
+
+        return {
+            ok: true,
+            uid,
+            displayName,
+            photoURL,
+        }
+    } catch(error) {
+        console.log(error);
+
+        return {
+            ok: false,
+            errorMessage: error.message,
+        }
+
+    }
 }
