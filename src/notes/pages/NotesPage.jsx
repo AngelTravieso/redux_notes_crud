@@ -1,17 +1,23 @@
-import { useDispatch } from "react-redux";
+import { Grid } from "@mui/material";
+import { AddNote, ListNotes } from "../components";
 import { NotesLayout } from "../layout/NotesLayout";
 
 export const NotesPage = () => {
-
-    const dispatch = useDispatch();
-
-    const onLogout = () => {
-        console.log('logout');
-    }
-
   return (
     <NotesLayout>
-        <h1>sss</h1>
+        <Grid container>
+          <Grid item xs={6} 
+            sx={{ 
+              flexGrow: 1,
+              minHeight: '100vh'
+            }}
+          >
+            <AddNote />
+          </Grid>
+          <Grid item xs={6} sx={{ flexGrow: 1 }}>
+            <ListNotes />
+          </Grid>
+        </Grid>
     </NotesLayout>
   )
 }
