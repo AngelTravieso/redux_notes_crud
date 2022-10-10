@@ -14,11 +14,17 @@ const googleProvider = new GoogleAuthProvider();
 
 export const signInWithGoogle = async () => {
     try {
+        const resp = await signInWithPopup( FirebaseAuth, googleProvider );
 
-        const res = await signInWithPopup( FirebaseAuth, googleProvider );
+        const { uid, displayName, photoURL } = resp.user;
         
-        console.log(res)
-
+        return {
+            ok: true,
+            uid,
+            email,
+            displayName,
+            photoURL,
+        }
 
     } catch(error) {
         console.log(error);

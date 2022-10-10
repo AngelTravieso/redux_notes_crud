@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 import { useForm } from '../../hooks';
-import { startLoginWithEmailAndPassword } from '../../store/auth';
+import { startGoogleSignIn, startLoginWithEmailAndPassword } from '../../store/auth';
 import { AuthLayout } from '../layout/AuthLayout';
 
 const formData = {
@@ -40,6 +40,11 @@ export const LoginPage = () => {
 
     dispatch( startLoginWithEmailAndPassword( formState ) );
 
+  }
+
+  const onGoogleSignIn = () => {
+    console.log('google');
+    dispatch( startGoogleSignIn() );
   }
 
   return (
@@ -91,7 +96,7 @@ export const LoginPage = () => {
               <Button variant='contained' type='submit' fullWidth>Ingresar</Button>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Button variant='contained' fullWidth>
+              <Button variant='contained' fullWidth onClick={ onGoogleSignIn }>
                 <Google />
                 <Typography sx={{ ml: 1 }}>Google</Typography>
               </Button>
