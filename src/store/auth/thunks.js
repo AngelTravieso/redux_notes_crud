@@ -8,6 +8,7 @@ export const checkingAuthentication = () => {
     }
 }
 
+
 export const startGoogleSignIn = () => {
     return async( dispatch ) => {
         dispatch( checkingCredentials() );
@@ -19,6 +20,7 @@ export const startGoogleSignIn = () => {
     }
 }
 
+
 export const startLoginWithEmailAndPassword = ({ email, password }) => {
     return async( dispatch ) => {
         dispatch( checkingCredentials() );
@@ -28,5 +30,12 @@ export const startLoginWithEmailAndPassword = ({ email, password }) => {
         if(!ok) return dispatch( logout({ errorMessage }) );
 
         dispatch( login({ uid, email, displayName, photoURL }) );
+    }
+}
+
+
+export const startLogout = () => {
+    return async( dispatch ) => {
+        dispatch( logout({}) )
     }
 }
