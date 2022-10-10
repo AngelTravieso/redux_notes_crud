@@ -1,6 +1,8 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material"
 import { useState } from "react"
+import { useDispatch } from "react-redux"
 import { useForm } from "../../hooks/useForm"
+import { savingNewNote } from "../../store"
 
 const formData = {
     note: '',
@@ -14,6 +16,8 @@ export const AddNote = () => {
 
     const [formSubmitted, setFormSubmitted] = useState(false);
 
+    const dispatch = useDispatch();
+
     const { 
         formState, note,
         isFormValid, noteValid,
@@ -26,10 +30,11 @@ export const AddNote = () => {
 
         if(!isFormValid) return;
 
-        console.log('agregando nota');
         console.log(formState);
 
         // onResetForm();
+        dispatch( savingNewNote() )
+
     }
 
   return (
