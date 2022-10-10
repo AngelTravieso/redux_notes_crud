@@ -2,7 +2,13 @@ import { Box, Button, Grid, TextField, Typography } from "@mui/material"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useForm } from "../../hooks/useForm"
-import { savingNewNote } from "../../store"
+import { addNewEmptyNote, savingNewNote, startNewNote } from "../../store"
+
+import moment from 'moment';
+import { v4 as uuidv4 } from 'uuid';
+
+moment.locale('es');
+const myDate = moment();
 
 const formData = {
     note: '',
@@ -12,9 +18,12 @@ const formValidation = {
     note: [ (value) => value.length >= 3, 'La nota debe contener mínimo 3 letras.'],
 }
 
-export const AddNote = () => {
+export const AddNoteView = () => {
 
     const [formSubmitted, setFormSubmitted] = useState(false);
+
+
+
 
     const dispatch = useDispatch();
 
@@ -24,16 +33,25 @@ export const AddNote = () => {
         onInputChange, onResetForm,
     } = useForm( formData, formValidation );
 
+
     const onAddNote = ( evt ) => {
         evt.preventDefault();
         setFormSubmitted(true);
 
         if(!isFormValid) return;
 
-        console.log(formState);
+        // Datos nota
+        const newNote = {
+            id: uuidv4(),
+            title: note,
+            date: myDate.format('llll'),
+        }
 
-        // onResetForm();
-        dispatch( savingNewNote() )
+        onResetForm();
+
+        setFormSubmitted(false);
+
+        dispatch( startNewNote( newNote ) )
 
     }
 
@@ -47,7 +65,7 @@ export const AddNote = () => {
             <Grid item sx={{ mb: 5 }}>
                 <TextField
                     variant="filled"
-                    label="título nota"
+                    label="título"
                     name="note"
                     autoComplete="off"
                     value={ note }

@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
-import { AddNote, ListNotes } from "../components";
+
 import { NotesLayout } from "../layout/NotesLayout";
+import { AddNoteView, ListNotesView } from "../views";
 
 export const NotesPage = () => {
   return (
@@ -9,13 +10,13 @@ export const NotesPage = () => {
           <Grid item xs={6} 
             sx={{ 
               flexGrow: 1,
-              minHeight: '100vh'
+              minHeight: '75vh'
             }}
           >
-            <AddNote />
+            <AddNoteView />
           </Grid>
           <Grid item xs={6} sx={{ flexGrow: 1 }}>
-            <ListNotes />
+            <ListNotesView />
           </Grid>
         </Grid>
     </NotesLayout>

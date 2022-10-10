@@ -11,7 +11,9 @@ export const notesSlice = createSlice({
             state.isSaving = true;
         },
         addNewEmptyNote: ( state, { payload }) => {
-            state.notes = [...notes, payload.note],
+            state.notes = [...state.notes, payload],
+            
+            // state.notes.push( payload );
             state.isSaving = false;
         }
     }
