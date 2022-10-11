@@ -5,9 +5,12 @@ import {
     createUserWithEmailAndPassword,
     updateProfile
 } from 'firebase/auth';
+
 import { FirebaseAuth } from './config';
 
+
 const googleProvider = new GoogleAuthProvider();
+
 
 export const registerUserWithEmailAndPassword = async ({ displayName, email, password }) => {
     try {

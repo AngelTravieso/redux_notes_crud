@@ -1,6 +1,7 @@
 import { Grid, Typography } from "@mui/material"
 import EventBusyIcon from '@mui/icons-material/EventBusy';
 
+
 export const EmptyNotesViews = () => {
   return (
     <Grid
@@ -25,7 +26,6 @@ export const EmptyNotesViews = () => {
                 <Typography variant="h5" color="white">No hay notas creadas</Typography>
             </Grid>
         </Grid>
-
 
     </Grid>
   )

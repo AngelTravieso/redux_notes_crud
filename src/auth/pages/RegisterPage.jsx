@@ -1,7 +1,8 @@
-import { Alert, Button, Grid, Link, TextField } from '@mui/material';
 import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
+import { Alert, Button, Grid, Link, TextField } from '@mui/material';
+
 import { useForm } from '../../hooks';
 import { startCreatingUserWithEmailAndPassword } from '../../store/auth';
 import { AuthLayout } from '../layout/AuthLayout';

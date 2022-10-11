@@ -1,8 +1,9 @@
-import { Box, Button, Grid, TextField, Typography } from "@mui/material"
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { useForm } from "../../hooks/useForm"
-import { addNewEmptyNote, savingNewNote, startNewNote } from "../../store"
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+
+import { useForm } from "../../hooks/useForm";
+import { startNewNote } from "../../store";
 
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
@@ -18,17 +19,15 @@ const formValidation = {
     note: [ (value) => value.length >= 3, 'La nota debe contener mínimo 3 letras.'],
 }
 
+
 export const AddNoteView = () => {
 
     const [formSubmitted, setFormSubmitted] = useState(false);
 
-
-
-
     const dispatch = useDispatch();
 
     const { 
-        formState, note,
+        note,
         isFormValid, noteValid,
         onInputChange, onResetForm,
     } = useForm( formData, formValidation );

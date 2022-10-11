@@ -1,5 +1,7 @@
-import { Navigate, Route, Routes } from "react-router-dom"
-import { NotesPage } from "../pages"
+import { Navigate, Route, Routes } from "react-router-dom";
+
+import { NotesPage } from "../pages";
+
 
 export const NotesRoutes = () => {
   return (

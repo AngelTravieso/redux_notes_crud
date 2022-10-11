@@ -3,6 +3,7 @@ import { Grid } from "@mui/material";
 import { NotesLayout } from "../layout/NotesLayout";
 import { AddNoteView, ListNotesView } from "../views";
 
+
 export const NotesPage = () => {
   return (
     <NotesLayout>

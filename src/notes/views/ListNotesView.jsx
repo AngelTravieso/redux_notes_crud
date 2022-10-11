@@ -1,7 +1,9 @@
-import { Box, Grid, Typography } from "@mui/material"
+import { Box, Grid, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-import { Note } from "../components"
+
+import { Note } from "../components";
 import { EmptyNotesViews } from "./EmptyNotesViews";
+
 
 export const ListNotesView = () => {
 
