@@ -20,10 +20,10 @@ const formValidation = {
 export const LoginPage = () => {
 
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const { state, errorMessage } = useSelector( state => state.auth );
+  const { status, errorMessage } = useSelector( state => state.auth );
   const dispatch = useDispatch();
 
-  const isAuthenticating = useMemo(() => state === 'checking', [ state ]);
+  const isAuthenticating = useMemo(() => status === 'checking', [ status ]);
 
   const { 
     formState, email, password,
@@ -43,7 +43,6 @@ export const LoginPage = () => {
   }
 
   const onGoogleSignIn = () => {
-    console.log('google');
     dispatch( startGoogleSignIn() );
   }
 
@@ -93,7 +92,14 @@ export const LoginPage = () => {
 
           <Grid container sx={{ mt: 2 }}>
             <Grid item xs={12} sm={6} sx={{ pr: 2 }}>
-              <Button variant='contained' type='submit' fullWidth>Ingresar</Button>
+              <Button
+                variant='contained'
+                type='submit'
+                fullWidth
+                disabled={ isAuthenticating }
+              >
+                Ingresar
+              </Button>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Button variant='contained' fullWidth onClick={ onGoogleSignIn }>

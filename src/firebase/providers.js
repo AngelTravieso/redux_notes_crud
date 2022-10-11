@@ -2,10 +2,42 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
     signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    updateProfile
 } from 'firebase/auth';
 import { FirebaseAuth } from './config';
 
 const googleProvider = new GoogleAuthProvider();
+
+export const registerUserWithEmailAndPassword = async ({ displayName, email, password }) => {
+    try {
+        const resp = await createUserWithEmailAndPassword(FirebaseAuth, email, password);
+
+        const { uid, photoURL } = resp.user;
+
+        // Actualizar nombre en firebase
+        await updateProfile(FirebaseAuth.currentUser, {
+            displayName,
+        })
+
+        return {
+            ok: true,
+            uid,
+            email,
+            photoURL,
+            displayName,
+        }
+
+    } catch(error) {
+        console.log(error);
+        const errorMessage = error.errorMessage;
+        return {
+            ok: false,
+            errorMessage,
+        }
+    }
+
+}
 
 
 export const signInWithGoogle = async () => {

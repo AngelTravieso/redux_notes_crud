@@ -1,9 +1,10 @@
 import { AppBar, Button, Toolbar, Typography } from "@mui/material"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { startLogout } from "../../store/auth";
 
 export const Navbar = () => {
 
+    const { displayName } = useSelector( state => state.auth );
     const dispatch = useDispatch();
 
     const onLogout = () => {
@@ -20,7 +21,7 @@ export const Navbar = () => {
                     flexGrow: 1,
                 }}
             >
-                Notas
+                Bienvenido { displayName }
             </Typography>
             <Button color="inherit" onClick={ onLogout }>
                 Salir

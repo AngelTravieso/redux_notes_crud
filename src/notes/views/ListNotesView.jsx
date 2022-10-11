@@ -7,8 +7,6 @@ export const ListNotesView = () => {
 
   const { notes } = useSelector( state => state.notes );
 
-  console.log(notes);
-
   return (
     <Box sx={{ padding: 4 }}>
       <Grid item sx={{ mb: 5 }}>
